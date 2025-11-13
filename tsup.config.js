@@ -15,6 +15,11 @@ const config = {
   outExtension() {
     return { js: '.mjs' }
   },
+  // Don't externalize the json-schema-form packages
+  noExternal: [
+    '@remoteoss/json-schema-form',
+    '@remoteoss/json-schema-form-v0-deprecated',
+  ],
 }
 
 export default config
