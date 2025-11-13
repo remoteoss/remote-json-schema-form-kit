@@ -18,12 +18,14 @@ interface JsfOptions extends CreateHeadlessFormOptions {
   [key: string]: any
 }
 
+function isNextVersion(formSchema: FormSchema, { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false }) {
+  return formSchema?.schema?.['x-rmt-meta']?.jsfVersion === '1' || nextVersion
+}
+
 export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOptions = {}) {
-  const { nextVersion: configNextVersion = false, initialValues, strictInputType } = jsfOptions
+  const { initialValues, strictInputType } = jsfOptions
 
-  const schemaJsfVersion = formSchema?.schema?.['x-rmt-meta']?.jsfVersion
-
-  const nextVersion = schemaJsfVersion === '1' || configNextVersion
+  const nextVersion = isNextVersion(formSchema, jsfOptions)
 
   if (nextVersion) {
     return createHeadlessFormNext(formSchema as FormSchemaNext, {
@@ -42,6 +44,12 @@ export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOption
   } as any)
 }
 
-export function getModifyFn(nextVersion: boolean) {
-  return nextVersion ? modifyNext : modifyV0
+export function modify(formSchema: FormSchema, options = {}) {
+  const nextVersion = isNextVersion(formSchema, options)
+
+  if (nextVersion) {
+    return modifyNext(formSchema, options)
+  }
+
+  return modifyV0(formSchema, options)
 }
