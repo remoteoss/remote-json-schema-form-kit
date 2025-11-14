@@ -19,7 +19,7 @@ interface JsfOptions extends CreateHeadlessFormOptions {
 }
 
 function isNextVersion(formSchema: FormSchema, { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false }) {
-  return formSchema?.schema?.['x-rmt-meta']?.jsfVersion === '1' || nextVersion
+  return formSchema?.['x-rmt-meta']?.jsfVersion === '1' || nextVersion
 }
 
 export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOptions = {}) {
