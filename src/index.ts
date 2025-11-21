@@ -18,11 +18,15 @@ interface JsfOptions extends CreateHeadlessFormOptions {
   [key: string]: any
 }
 
+// Re-export return types for DTS generation
+export type FormResult = ReturnType<typeof createHeadlessFormNext> | ReturnType<typeof createHeadlessFormV0>
+export type ModifyResult = ReturnType<typeof modifyNext> | ReturnType<typeof modifyV0>
+
 function isNextVersion(formSchema: FormSchema, { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false }) {
   return formSchema?.['x-rmt-meta']?.jsfVersion === '1' || nextVersion
 }
 
-export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOptions = {}) {
+export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOptions = {}): FormResult {
   const { initialValues, strictInputType } = jsfOptions
 
   const nextVersion = isNextVersion(formSchema, jsfOptions)
@@ -44,7 +48,7 @@ export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOption
   } as any)
 }
 
-export function modify(formSchema: FormSchema, options = {}) {
+export function modify(formSchema: FormSchema, options = {}): ModifyResult {
   const nextVersion = isNextVersion(formSchema, options)
 
   if (nextVersion) {

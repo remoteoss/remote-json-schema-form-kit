@@ -5,7 +5,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 /** @type {import('tsup').Options} */
 const config = {
   clean: true,
-  dts: false,
+  dts: true,
   entry: ['src/index.ts'],
   format: ['esm'],
   sourcemap: true,
