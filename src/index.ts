@@ -16,8 +16,8 @@ type FormSchemaLegacy = Parameters<typeof createHeadlessFormV0>[0]
 type FormSchema = FormSchemaNext | FormSchemaLegacy
 type ValidationResultLegacy = ReturnType<typeof createHeadlessFormV0>['handleValidation']
 interface FormErrorsLegacy {
-  formErrors: any
-  yupError: any
+  formErrors?: any
+  yupError?: any
 }
 
 interface JsfOptions extends CreateHeadlessFormOptions {
