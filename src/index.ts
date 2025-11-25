@@ -2,6 +2,7 @@ import {
   createHeadlessForm as createHeadlessFormNext,
   type CreateHeadlessFormOptions,
   modify as modifyNext,
+  type ValidationResult as ValidationResultNext,
 } from '@remoteoss/json-schema-form'
 import {
   createHeadlessForm as createHeadlessFormV0,
@@ -12,14 +13,16 @@ import { operators } from './json-logic-operators'
 type FormSchemaNext = Parameters<typeof createHeadlessFormNext>[0]
 type FormSchemaLegacy = Parameters<typeof createHeadlessFormV0>[0]
 type FormSchema = FormSchemaNext | FormSchemaLegacy
+type ValidationResultLegacy = ReturnType<typeof createHeadlessFormV0>['handleValidation']
 
-interface JsfOptions extends CreateHeadlessFormOptions {
+export interface JsfOptions extends CreateHeadlessFormOptions {
   nextVersion?: boolean
   [key: string]: any
 }
 
 // Re-export return types for DTS generation
 export type FormResult = ReturnType<typeof createHeadlessFormNext> | ReturnType<typeof createHeadlessFormV0>
+export type ValidationResult = ValidationResultNext | ValidationResultLegacy
 export type ModifyResult = ReturnType<typeof modifyNext> | ReturnType<typeof modifyV0>
 
 function isNextVersion(formSchema: FormSchema, { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false }) {
