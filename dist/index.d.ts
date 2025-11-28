@@ -3,7 +3,11 @@ import { createHeadlessForm as createHeadlessForm$2, modify as modify$2 } from '
 
 type FormSchemaNext = Parameters<typeof createHeadlessForm$1>[0];
 type FormSchemaLegacy = Parameters<typeof createHeadlessForm$2>[0];
-type FormSchema = FormSchemaNext | FormSchemaLegacy;
+type FormSchema = (FormSchemaNext | FormSchemaLegacy) & {
+    'x-rmt-meta'?: {
+        jsfVersion: '1' | '0';
+    };
+};
 interface JsfOptions extends CreateHeadlessFormOptions {
     nextVersion?: boolean;
     [key: string]: any;

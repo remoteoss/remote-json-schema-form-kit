@@ -11,7 +11,7 @@ import { operators } from './json-logic-operators'
 
 type FormSchemaNext = Parameters<typeof createHeadlessFormNext>[0]
 type FormSchemaLegacy = Parameters<typeof createHeadlessFormV0>[0]
-type FormSchema = FormSchemaNext | FormSchemaLegacy
+type FormSchema = (FormSchemaNext | FormSchemaLegacy) & { 'x-rmt-meta'?: { jsfVersion: '1' | '0' } }
 
 interface JsfOptions extends CreateHeadlessFormOptions {
   nextVersion?: boolean
@@ -52,7 +52,7 @@ export function modify(formSchema: FormSchema, options = {}): ModifyResult {
   const nextVersion = isNextVersion(formSchema, options)
 
   if (nextVersion) {
-    return modifyNext(formSchema, options)
+    return modifyNext(formSchema as FormSchemaNext, options)
   }
 
   return modifyV0(formSchema, options)
