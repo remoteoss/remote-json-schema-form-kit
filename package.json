@@ -40,7 +40,7 @@
     "prepare": "husky && npm run build"
   },
   "dependencies": {
-    "@remoteoss/json-schema-form": "1.2.6",
+    "@remoteoss/json-schema-form": "^1.2.8",
     "@remoteoss/json-schema-form-v0-deprecated": "npm:@remoteoss/json-schema-form@0.12.2-beta.0",
     "date-fns": "^4.1.0"
   },
