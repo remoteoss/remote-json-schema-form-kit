@@ -30,7 +30,8 @@ This project requires Node.js LTS v18.14.0.
 
 Submit your branch pointing to `main`.
 
-Run `npm run dev` and upload the `dist`, is required to be able to install packages like `"@remoteoss/remote-json-schema-form-kit": "github:remoteoss/remote-json-schema-form-kit#update-types-kit"` 
+1. Run `npm run dev` to upload the `dist`, is required to be able to install packages like `"@remoteoss/remote-json-schema-form-kit": "github:remoteoss/remote-json-schema-form-kit#update-types-kit#0.0.1"` 
+2. Update the version in the `package.json` file and `package-lock.json` file.
 
 
 ### Testing the PR changes in your "consumer" project
