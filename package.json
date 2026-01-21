@@ -1,7 +1,7 @@
 {
   "name": "@remoteoss/remote-json-schema-form-kit",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "packageManager": "npm@10.9.1-r0",
   "description": "Remote's kit for json-schema-form",
   "author": "Remote.com <engineering@remote.com> (https://remote.com/)",
