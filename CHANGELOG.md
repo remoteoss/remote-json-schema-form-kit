@@ -1,3 +1,9 @@
+#### 0.0.7 (2026-02-19)
+
+#### New features
+
+- Add `date_format` json-logic operator [5449a70cf09132b02ba63ff5cf872e2fb993de20](https://github.com/remoteoss/remote-json-schema-form-kit/commit/5449a70cf09132b02ba63ff5cf872e2fb993de20)
+
 #### 0.0.6 (2026-02-12)
 
 #### New features
