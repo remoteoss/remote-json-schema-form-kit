@@ -1,3 +1,11 @@
+#### 0.0.8 (2026-03-09)
+
+#### New features
+
+- Adds new `date_difference_in_weeks` json-logic operator
+- Adds `dateWithoutTimezoneOffset` util and all date related json-logic operators now use it. This guarantees that server-side validations match client side validations by removing timezone offsets from dates
+- Adds tests
+
 #### 0.0.7 (2026-02-19)
 
 #### New features
