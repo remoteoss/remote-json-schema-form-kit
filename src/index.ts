@@ -9,6 +9,7 @@ import {
   createHeadlessForm as createHeadlessFormV0,
   modify as modifyV0,
 } from '@remoteoss/json-schema-form-v0-deprecated'
+
 import { operators } from './json-logic-operators'
 
 type FormSchemaNext = Parameters<typeof createHeadlessFormNext>[0]
@@ -26,17 +27,25 @@ interface JsfOptions extends CreateHeadlessFormOptions {
 }
 
 // Re-export return types for DTS generation
-export type FormResult = ReturnType<typeof createHeadlessFormNext> | ReturnType<typeof createHeadlessFormV0>
+export type FormResult =
+  | ReturnType<typeof createHeadlessFormNext>
+  | ReturnType<typeof createHeadlessFormV0>
 export type ValidationResult = ValidationResultNext | ValidationResultLegacy
 export type ModifyResult = ReturnType<typeof modifyNext> | ReturnType<typeof modifyV0>
 export type ModifyConfig = Parameters<typeof modifyNext>[1] | Parameters<typeof modifyV0>[1]
 export type FormErrors = FormErrorsNext | FormErrorsLegacy
 
-function isNextVersion(formSchema: FormSchema, { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false }) {
+function isNextVersion(
+  formSchema: FormSchema,
+  { nextVersion }: { nextVersion?: boolean, [key: string]: any } = { nextVersion: false },
+) {
   return formSchema?.['x-rmt-meta']?.jsfVersion === '1' || nextVersion
 }
 
-export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOptions = {}): FormResult {
+export function createHeadlessForm(
+  formSchema: FormSchema,
+  jsfOptions: JsfOptions = {},
+): FormResult {
   const { initialValues, strictInputType } = jsfOptions
 
   const nextVersion = isNextVersion(formSchema, jsfOptions)
@@ -51,15 +60,18 @@ export function createHeadlessForm(formSchema: FormSchema, jsfOptions: JsfOption
     })
   }
 
-  return createHeadlessFormV0(formSchema as FormSchemaLegacy, {
-    initialValues,
-    strictInputType,
-    ...jsfOptions,
-  } as any)
+  return createHeadlessFormV0(
+    formSchema as FormSchemaLegacy,
+    {
+      initialValues,
+      strictInputType,
+      ...jsfOptions,
+    } as any,
+  )
 }
 
 export function modify(formSchema: FormSchema, options: ModifyConfig = {}): ModifyResult {
-  const nextVersion = isNextVersion(formSchema, options)
+  const nextVersion = isNextVersion(formSchema)
 
   if (nextVersion) {
     return modifyNext(formSchema, options)

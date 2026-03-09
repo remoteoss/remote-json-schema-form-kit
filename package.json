@@ -1,7 +1,7 @@
 {
   "name": "@remoteoss/remote-json-schema-form-kit",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "npm@10.9.1-r0",
   "description": "Remote's kit for json-schema-form",
   "author": "Remote.com <engineering@remote.com> (https://remote.com/)",
@@ -40,8 +40,8 @@
     "prepare": "husky && npm run build"
   },
   "dependencies": {
-    "@remoteoss/json-schema-form": "^1.2.9",
-    "@remoteoss/json-schema-form-v0-deprecated": "npm:@remoteoss/json-schema-form@0.12.2-beta.0",
+    "@remoteoss/json-schema-form": "^1.2.10",
+    "@remoteoss/json-schema-form-v0-deprecated": "npm:@remoteoss/json-schema-form@0.12.3-beta.0",
     "date-fns": "^4.1.0"
   },
   "devDependencies": {
