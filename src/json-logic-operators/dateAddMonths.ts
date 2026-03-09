@@ -1,5 +1,7 @@
 import { addMonths } from 'date-fns'
 
+import { dateWithoutTimezoneOffset } from '../utils'
+
 /**
  * Adds the specified number of months to the given date.
  * @param a - The date to add months to in "YYYY-MM-DD" format.
@@ -7,5 +9,5 @@ import { addMonths } from 'date-fns'
  * @returns The new date.
  */
 export function dateAddMonths(a: string, b: number): Date {
-  return addMonths(new Date(a), b)
+  return addMonths(dateWithoutTimezoneOffset(a), b)
 }
