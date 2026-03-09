@@ -16,7 +16,9 @@ interface JsfOptions extends CreateHeadlessFormOptions {
 type FormResult = ReturnType<typeof createHeadlessForm$1> | ReturnType<typeof createHeadlessForm$2>;
 type ValidationResult = ValidationResult$1 | ValidationResultLegacy;
 type ModifyResult = ReturnType<typeof modify$1> | ReturnType<typeof modify$2>;
-type ModifyConfig = Parameters<typeof modify$1>[1] | Parameters<typeof modify$2>[1];
+type ModifyConfig = Parameters<typeof modify$1>[1] | Parameters<typeof modify$2>[1] & {
+    nextVersion?: boolean;
+};
 type FormErrors = FormErrors$1 | FormErrorsLegacy;
 declare function createHeadlessForm(formSchema: FormSchema, jsfOptions?: JsfOptions): FormResult;
 declare function modify(formSchema: FormSchema, options?: ModifyConfig): ModifyResult;

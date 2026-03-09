@@ -1,3 +1,9 @@
+#### 0.0.9 (2026-03-10)
+
+#### Bug fixes
+
+- Fixes `modify` calls not working correctly with `nextVersion` option
+
 #### 0.0.8 (2026-03-09)
 
 #### New features
