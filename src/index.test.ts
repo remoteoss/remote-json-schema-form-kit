@@ -69,6 +69,10 @@ jest.spyOn(jsfV0, 'createHeadlessForm')
 jest.spyOn(jsfNext, 'modify')
 jest.spyOn(jsfV0, 'modify')
 
+afterEach(() => {
+  jest.clearAllMocks()
+})
+
 describe('createHeadlessForm', () => {
   describe('version detection', () => {
     it('uses legacy version when x-rmt-meta is absent', () => {
@@ -192,11 +196,26 @@ describe('modify', () => {
     const result = modify(legacySchema, { muteLogging: true })
 
     expect(result).toHaveProperty('schema')
+
+    expect(jsfV0.modify).toHaveBeenCalledWith(legacySchema, { muteLogging: true })
+    expect(jsfNext.modify).not.toHaveBeenCalled()
   })
 
   it('modifies a next schema', () => {
     const result = modify(nextSchema, { muteLogging: true })
 
     expect(result).toHaveProperty('schema')
+
+    expect(jsfNext.modify).toHaveBeenCalledWith(nextSchema, { muteLogging: true })
+    expect(jsfV0.modify).not.toHaveBeenCalled()
+  })
+
+  it('modifies a legacy schema with next version when nextVersion option is true', () => {
+    const result = modify(legacySchema, { nextVersion: true, muteLogging: true })
+
+    expect(result).toHaveProperty('schema')
+
+    expect(jsfNext.modify).toHaveBeenCalledWith(legacySchema, { nextVersion: true, muteLogging: true })
+    expect(jsfV0.modify).not.toHaveBeenCalled()
   })
 })

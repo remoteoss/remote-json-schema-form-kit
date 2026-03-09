@@ -32,7 +32,7 @@ export type FormResult =
   | ReturnType<typeof createHeadlessFormV0>
 export type ValidationResult = ValidationResultNext | ValidationResultLegacy
 export type ModifyResult = ReturnType<typeof modifyNext> | ReturnType<typeof modifyV0>
-export type ModifyConfig = Parameters<typeof modifyNext>[1] | Parameters<typeof modifyV0>[1]
+export type ModifyConfig = Parameters<typeof modifyNext>[1] | Parameters<typeof modifyV0>[1] & { nextVersion?: boolean }
 export type FormErrors = FormErrorsNext | FormErrorsLegacy
 
 function isNextVersion(
@@ -71,7 +71,7 @@ export function createHeadlessForm(
 }
 
 export function modify(formSchema: FormSchema, options: ModifyConfig = {}): ModifyResult {
-  const nextVersion = isNextVersion(formSchema)
+  const nextVersion = isNextVersion(formSchema, options)
 
   if (nextVersion) {
     return modifyNext(formSchema, options)
