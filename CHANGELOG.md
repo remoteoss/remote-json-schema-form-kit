@@ -1,3 +1,9 @@
+#### 0.0.10 (2026-03-19)
+
+#### New features
+
+- bump `@remoteoss/json-schema-form` to 1.2.10 [76c826389c282c867ef1061b1dbaf1942f548c5c](https://github.com/remoteoss/remote-json-schema-form-kit/commit/76c826389c282c867ef1061b1dbaf1942f548c5c)
+
 #### 0.0.9 (2026-03-10)
 
 #### Bug fixes
